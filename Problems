@@ -1,0 +1,10 @@
+Calculator.js:29 Uncaught TypeError: Cannot read property 'value' of null
+    at updateDisplay (Calculator.js:29)
+    at Calculator.js:35
+
+solve:
+https://stackoverflow.com/questions/43147320/document-queryselector-doesnt-work-in-js-file
+
+###########################
+Try moving <script src="IFS.js"></script> to the end of the HTML code, before the closing <body> tag, instead of having it at the <head>.
+###############################
