@@ -26,10 +26,71 @@ function updateDisplay() {
 
 	// Get the first element in the document with class="calculator-screen"  
 	const display = document.querySelector('.calculator-screen');
-	console.log('screenvalue:' + display.value);
-	console.log('displayValue: ' + calculator.displayValue);
 	display.value = calculator.displayValue;
-	console.log('screenvalue:' + display.value);
+}
+updateDisplay();
+
+
+
+// listen for clicks on the calculator nad determine what type of key was clicked.
+const keys = document.querySelector('.calculator-keys');
+// element.addEventListener(event, function)
+// event like as 'click', 'mousedown'
+// fuction is we want to call when event occurs
+keys.addEventListener('click', (event) => {
+	// event means 'click', event.target means the button value
+	const target = event.target;
+
+	// prevent user click the space between buttons, the value will be undefinded.
+	if(!target.matches('button')) {
+		return;
+	}
+
+	if(target.classList.contains('operator')) {
+		console.log('operator', target.value);
+		return;
+	}
+	if(target.classList.contains('decimal')) {
+		console.log('decimal', target.value);
+		inputDecimal(target.value);
+		updateDisplay();
+		return;
+	}
+	if(target.classList.contains('all-clear')) {
+		console.log('clear', target.value);
+		return;
+	}
+
+	console.log('digit',target.value);
+	// print the value user clicked to the screen
+	inputDigit(target.value);
+	// update the screen
+	updateDisplay();
+
+
+});
+
+
+// when user click the button, the value will be showed in screen
+function inputDigit(digit) {
+	const displayValue = calculator.displayValue;
+
+	// if displayValue === 0, so 0 change to digit
+	// else displayValue will append the digit to it
+	calculator.displayValue = displayValue === '0' ? digit : displayValue + digit; 
+
 }
 
-updateDisplay();
+
+function inputDecimal(dot) {
+
+	// if the displayValue does not contain decimal point
+	if (!calculator.displayValue.includes(dot)) {
+		// append the decimal point
+		calculator.displayValue += dot;
+	}
+} 
+
+function handleOperator(nextOperator) {
+	
+}
