@@ -33,3 +33,27 @@ function updateDisplay() {
 }
 
 updateDisplay();
+
+// listen for clicks on the calculator and 
+// determine what type of key was clicked
+const keys = document.querySelector('.calculator-keys');
+keys.addEventListener('click', (event) => {
+	const target = event.target;
+	if(!target.matches('button')) {
+		return;
+	}
+	if(target.classList.contains('operator')) {
+		console.log('operator',target.value);
+		return;
+	}
+	if(target.classList.contains('decimal')) {
+		console.log('decimal',target.value);
+		return;
+	}
+	if(target.classList.contains('all-clear')) {
+		console.log('clear',target.value);
+		return;
+	}
+	console.log('clear',target.value);
+});
+
